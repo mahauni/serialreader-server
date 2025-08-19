@@ -10,11 +10,21 @@ import (
 )
 
 var (
-	port int
+	port              int
+	arduinoDevicePath string
 )
 
+func init() {
+	serveCmd.Flags().StringVarP(&arduinoDevicePath, "arduino_path", "f", "/dev/cu.usbmodem14201", "The location of the connected arduino device on your computer.")
+	serveCmd.MarkFlagRequired("arduino_path")
+
+	serveCmd.Flags().IntVarP(&port, "port", "p", 50051, "The port to run this server on")
+
+	rootCmd.AddCommand(serveCmd)
+}
+
 func doServe() {
-	server := server.New(port)
+	server := server.New(arduinoDevicePath, port)
 
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
@@ -22,6 +32,7 @@ func doServe() {
 		<-sigs
 		server.StopMainRuntimeLoop()
 	}()
+	server.RunMainRuntimeLoop()
 }
 
 var serveCmd = &cobra.Command{
@@ -31,10 +42,4 @@ var serveCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		doServe()
 	},
-}
-
-func init() {
-	serveCmd.Flags().IntVarP(&port, "port", "p", 50051, "The port to run this server on")
-
-	rootCmd.AddCommand(serveCmd)
 }

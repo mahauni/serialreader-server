@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SerialReaderService_SayHello_FullMethodName = "/proto.SerialReaderService/SayHello"
+	SerialReaderService_SayHello_FullMethodName                     = "/proto.SerialReaderService/SayHello"
+	SerialReaderService_GetSparkFunWeatherShieldData_FullMethodName = "/proto.SerialReaderService/GetSparkFunWeatherShieldData"
 )
 
 // SerialReaderServiceClient is the client API for SerialReaderService service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SerialReaderServiceClient interface {
 	SayHello(ctx context.Context, in *SayHelloRequest, opts ...grpc.CallOption) (*SayHelloResponse, error)
+	GetSparkFunWeatherShieldData(ctx context.Context, in *GetTimeSeriesData, opts ...grpc.CallOption) (*SparkFunWeatherShieldTimeSeriesData, error)
 }
 
 type serialReaderServiceClient struct {
@@ -47,11 +49,22 @@ func (c *serialReaderServiceClient) SayHello(ctx context.Context, in *SayHelloRe
 	return out, nil
 }
 
+func (c *serialReaderServiceClient) GetSparkFunWeatherShieldData(ctx context.Context, in *GetTimeSeriesData, opts ...grpc.CallOption) (*SparkFunWeatherShieldTimeSeriesData, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SparkFunWeatherShieldTimeSeriesData)
+	err := c.cc.Invoke(ctx, SerialReaderService_GetSparkFunWeatherShieldData_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SerialReaderServiceServer is the server API for SerialReaderService service.
 // All implementations must embed UnimplementedSerialReaderServiceServer
 // for forward compatibility.
 type SerialReaderServiceServer interface {
 	SayHello(context.Context, *SayHelloRequest) (*SayHelloResponse, error)
+	GetSparkFunWeatherShieldData(context.Context, *GetTimeSeriesData) (*SparkFunWeatherShieldTimeSeriesData, error)
 	mustEmbedUnimplementedSerialReaderServiceServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedSerialReaderServiceServer struct{}
 
 func (UnimplementedSerialReaderServiceServer) SayHello(context.Context, *SayHelloRequest) (*SayHelloResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SayHello not implemented")
+}
+func (UnimplementedSerialReaderServiceServer) GetSparkFunWeatherShieldData(context.Context, *GetTimeSeriesData) (*SparkFunWeatherShieldTimeSeriesData, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSparkFunWeatherShieldData not implemented")
 }
 func (UnimplementedSerialReaderServiceServer) mustEmbedUnimplementedSerialReaderServiceServer() {}
 func (UnimplementedSerialReaderServiceServer) testEmbeddedByValue()                             {}
@@ -104,6 +120,24 @@ func _SerialReaderService_SayHello_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SerialReaderService_GetSparkFunWeatherShieldData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTimeSeriesData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SerialReaderServiceServer).GetSparkFunWeatherShieldData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SerialReaderService_GetSparkFunWeatherShieldData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SerialReaderServiceServer).GetSparkFunWeatherShieldData(ctx, req.(*GetTimeSeriesData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SerialReaderService_ServiceDesc is the grpc.ServiceDesc for SerialReaderService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var SerialReaderService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SayHello",
 			Handler:    _SerialReaderService_SayHello_Handler,
+		},
+		{
+			MethodName: "GetSparkFunWeatherShieldData",
+			Handler:    _SerialReaderService_GetSparkFunWeatherShieldData_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

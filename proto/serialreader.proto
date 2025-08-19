@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package proto;
 
+import "google/protobuf/timestamp.proto";
+
 option go_package = "github.com/bartmika/serialreader-server";
 
 // --- HELLO ENDPOINT ---
@@ -18,4 +20,28 @@ message SayHelloResponse {
 
 service SerialReaderService {
   rpc SayHello(SayHelloRequest) returns (SayHelloResponse) {}
+  rpc GetSparkFunWeatherShieldData(GetTimeSeriesData) returns (SparkFunWeatherShieldTimeSeriesData) {}
+}
+
+// --- POLLING ENDPOINT ---
+
+message GetTimeSeriesData {}
+
+message SparkFunWeatherShieldTimeSeriesData {
+  bool status = 1;
+  google.protobuf.Timestamp timestamp = 2;
+  float humidity_value = 3;
+  string humidity_unit = 4;
+  float temperature_value = 5;
+  string temperature_unit = 6;
+  float pressure_value = 7;
+  string pressure_unit = 8;
+  float temperature_backup_value = 9;
+  string temperature_backup_unit = 10;
+  float altitude_value = 11;
+  string altitude_unit = 12;
+  float illuminance_value = 13;
+  string illuminance_unit = 14;
+  float soil_moisture_value = 15;
+  string soil_moisture_unit = 16;
 }

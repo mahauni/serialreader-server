@@ -9,6 +9,7 @@ package serialreader_server
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -111,17 +112,237 @@ func (x *SayHelloResponse) GetMessage() string {
 	return ""
 }
 
+type GetTimeSeriesData struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetTimeSeriesData) Reset() {
+	*x = GetTimeSeriesData{}
+	mi := &file_proto_serialreader_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetTimeSeriesData) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTimeSeriesData) ProtoMessage() {}
+
+func (x *GetTimeSeriesData) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_serialreader_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTimeSeriesData.ProtoReflect.Descriptor instead.
+func (*GetTimeSeriesData) Descriptor() ([]byte, []int) {
+	return file_proto_serialreader_proto_rawDescGZIP(), []int{2}
+}
+
+type SparkFunWeatherShieldTimeSeriesData struct {
+	state                  protoimpl.MessageState `protogen:"open.v1"`
+	Status                 bool                   `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	Timestamp              *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	HumidityValue          float32                `protobuf:"fixed32,3,opt,name=humidity_value,json=humidityValue,proto3" json:"humidity_value,omitempty"`
+	HumidityUnit           string                 `protobuf:"bytes,4,opt,name=humidity_unit,json=humidityUnit,proto3" json:"humidity_unit,omitempty"`
+	TemperatureValue       float32                `protobuf:"fixed32,5,opt,name=temperature_value,json=temperatureValue,proto3" json:"temperature_value,omitempty"`
+	TemperatureUnit        string                 `protobuf:"bytes,6,opt,name=temperature_unit,json=temperatureUnit,proto3" json:"temperature_unit,omitempty"`
+	PressureValue          float32                `protobuf:"fixed32,7,opt,name=pressure_value,json=pressureValue,proto3" json:"pressure_value,omitempty"`
+	PressureUnit           string                 `protobuf:"bytes,8,opt,name=pressure_unit,json=pressureUnit,proto3" json:"pressure_unit,omitempty"`
+	TemperatureBackupValue float32                `protobuf:"fixed32,9,opt,name=temperature_backup_value,json=temperatureBackupValue,proto3" json:"temperature_backup_value,omitempty"`
+	TemperatureBackupUnit  string                 `protobuf:"bytes,10,opt,name=temperature_backup_unit,json=temperatureBackupUnit,proto3" json:"temperature_backup_unit,omitempty"`
+	AltitudeValue          float32                `protobuf:"fixed32,11,opt,name=altitude_value,json=altitudeValue,proto3" json:"altitude_value,omitempty"`
+	AltitudeUnit           string                 `protobuf:"bytes,12,opt,name=altitude_unit,json=altitudeUnit,proto3" json:"altitude_unit,omitempty"`
+	IlluminanceValue       float32                `protobuf:"fixed32,13,opt,name=illuminance_value,json=illuminanceValue,proto3" json:"illuminance_value,omitempty"`
+	IlluminanceUnit        string                 `protobuf:"bytes,14,opt,name=illuminance_unit,json=illuminanceUnit,proto3" json:"illuminance_unit,omitempty"`
+	SoilMoistureValue      float32                `protobuf:"fixed32,15,opt,name=soil_moisture_value,json=soilMoistureValue,proto3" json:"soil_moisture_value,omitempty"`
+	SoilMoistureUnit       string                 `protobuf:"bytes,16,opt,name=soil_moisture_unit,json=soilMoistureUnit,proto3" json:"soil_moisture_unit,omitempty"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *SparkFunWeatherShieldTimeSeriesData) Reset() {
+	*x = SparkFunWeatherShieldTimeSeriesData{}
+	mi := &file_proto_serialreader_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SparkFunWeatherShieldTimeSeriesData) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SparkFunWeatherShieldTimeSeriesData) ProtoMessage() {}
+
+func (x *SparkFunWeatherShieldTimeSeriesData) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_serialreader_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SparkFunWeatherShieldTimeSeriesData.ProtoReflect.Descriptor instead.
+func (*SparkFunWeatherShieldTimeSeriesData) Descriptor() ([]byte, []int) {
+	return file_proto_serialreader_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *SparkFunWeatherShieldTimeSeriesData) GetStatus() bool {
+	if x != nil {
+		return x.Status
+	}
+	return false
+}
+
+func (x *SparkFunWeatherShieldTimeSeriesData) GetTimestamp() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Timestamp
+	}
+	return nil
+}
+
+func (x *SparkFunWeatherShieldTimeSeriesData) GetHumidityValue() float32 {
+	if x != nil {
+		return x.HumidityValue
+	}
+	return 0
+}
+
+func (x *SparkFunWeatherShieldTimeSeriesData) GetHumidityUnit() string {
+	if x != nil {
+		return x.HumidityUnit
+	}
+	return ""
+}
+
+func (x *SparkFunWeatherShieldTimeSeriesData) GetTemperatureValue() float32 {
+	if x != nil {
+		return x.TemperatureValue
+	}
+	return 0
+}
+
+func (x *SparkFunWeatherShieldTimeSeriesData) GetTemperatureUnit() string {
+	if x != nil {
+		return x.TemperatureUnit
+	}
+	return ""
+}
+
+func (x *SparkFunWeatherShieldTimeSeriesData) GetPressureValue() float32 {
+	if x != nil {
+		return x.PressureValue
+	}
+	return 0
+}
+
+func (x *SparkFunWeatherShieldTimeSeriesData) GetPressureUnit() string {
+	if x != nil {
+		return x.PressureUnit
+	}
+	return ""
+}
+
+func (x *SparkFunWeatherShieldTimeSeriesData) GetTemperatureBackupValue() float32 {
+	if x != nil {
+		return x.TemperatureBackupValue
+	}
+	return 0
+}
+
+func (x *SparkFunWeatherShieldTimeSeriesData) GetTemperatureBackupUnit() string {
+	if x != nil {
+		return x.TemperatureBackupUnit
+	}
+	return ""
+}
+
+func (x *SparkFunWeatherShieldTimeSeriesData) GetAltitudeValue() float32 {
+	if x != nil {
+		return x.AltitudeValue
+	}
+	return 0
+}
+
+func (x *SparkFunWeatherShieldTimeSeriesData) GetAltitudeUnit() string {
+	if x != nil {
+		return x.AltitudeUnit
+	}
+	return ""
+}
+
+func (x *SparkFunWeatherShieldTimeSeriesData) GetIlluminanceValue() float32 {
+	if x != nil {
+		return x.IlluminanceValue
+	}
+	return 0
+}
+
+func (x *SparkFunWeatherShieldTimeSeriesData) GetIlluminanceUnit() string {
+	if x != nil {
+		return x.IlluminanceUnit
+	}
+	return ""
+}
+
+func (x *SparkFunWeatherShieldTimeSeriesData) GetSoilMoistureValue() float32 {
+	if x != nil {
+		return x.SoilMoistureValue
+	}
+	return 0
+}
+
+func (x *SparkFunWeatherShieldTimeSeriesData) GetSoilMoistureUnit() string {
+	if x != nil {
+		return x.SoilMoistureUnit
+	}
+	return ""
+}
+
 var File_proto_serialreader_proto protoreflect.FileDescriptor
 
 const file_proto_serialreader_proto_rawDesc = "" +
 	"\n" +
-	"\x18proto/serialreader.proto\x12\x05proto\"%\n" +
+	"\x18proto/serialreader.proto\x12\x05proto\x1a\x1fgoogle/protobuf/timestamp.proto\"%\n" +
 	"\x0fSayHelloRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\",\n" +
 	"\x10SayHelloResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage2T\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\"\x13\n" +
+	"\x11GetTimeSeriesData\"\xdb\x05\n" +
+	"#SparkFunWeatherShieldTimeSeriesData\x12\x16\n" +
+	"\x06status\x18\x01 \x01(\bR\x06status\x128\n" +
+	"\ttimestamp\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12%\n" +
+	"\x0ehumidity_value\x18\x03 \x01(\x02R\rhumidityValue\x12#\n" +
+	"\rhumidity_unit\x18\x04 \x01(\tR\fhumidityUnit\x12+\n" +
+	"\x11temperature_value\x18\x05 \x01(\x02R\x10temperatureValue\x12)\n" +
+	"\x10temperature_unit\x18\x06 \x01(\tR\x0ftemperatureUnit\x12%\n" +
+	"\x0epressure_value\x18\a \x01(\x02R\rpressureValue\x12#\n" +
+	"\rpressure_unit\x18\b \x01(\tR\fpressureUnit\x128\n" +
+	"\x18temperature_backup_value\x18\t \x01(\x02R\x16temperatureBackupValue\x126\n" +
+	"\x17temperature_backup_unit\x18\n" +
+	" \x01(\tR\x15temperatureBackupUnit\x12%\n" +
+	"\x0ealtitude_value\x18\v \x01(\x02R\raltitudeValue\x12#\n" +
+	"\raltitude_unit\x18\f \x01(\tR\faltitudeUnit\x12+\n" +
+	"\x11illuminance_value\x18\r \x01(\x02R\x10illuminanceValue\x12)\n" +
+	"\x10illuminance_unit\x18\x0e \x01(\tR\x0filluminanceUnit\x12.\n" +
+	"\x13soil_moisture_value\x18\x0f \x01(\x02R\x11soilMoistureValue\x12,\n" +
+	"\x12soil_moisture_unit\x18\x10 \x01(\tR\x10soilMoistureUnit2\xbc\x01\n" +
 	"\x13SerialReaderService\x12=\n" +
-	"\bSayHello\x12\x16.proto.SayHelloRequest\x1a\x17.proto.SayHelloResponse\"\x00B)Z'github.com/bartmika/serialreader-serverb\x06proto3"
+	"\bSayHello\x12\x16.proto.SayHelloRequest\x1a\x17.proto.SayHelloResponse\"\x00\x12f\n" +
+	"\x1cGetSparkFunWeatherShieldData\x12\x18.proto.GetTimeSeriesData\x1a*.proto.SparkFunWeatherShieldTimeSeriesData\"\x00B)Z'github.com/bartmika/serialreader-serverb\x06proto3"
 
 var (
 	file_proto_serialreader_proto_rawDescOnce sync.Once
@@ -135,19 +356,25 @@ func file_proto_serialreader_proto_rawDescGZIP() []byte {
 	return file_proto_serialreader_proto_rawDescData
 }
 
-var file_proto_serialreader_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_proto_serialreader_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_proto_serialreader_proto_goTypes = []any{
-	(*SayHelloRequest)(nil),  // 0: proto.SayHelloRequest
-	(*SayHelloResponse)(nil), // 1: proto.SayHelloResponse
+	(*SayHelloRequest)(nil),                     // 0: proto.SayHelloRequest
+	(*SayHelloResponse)(nil),                    // 1: proto.SayHelloResponse
+	(*GetTimeSeriesData)(nil),                   // 2: proto.GetTimeSeriesData
+	(*SparkFunWeatherShieldTimeSeriesData)(nil), // 3: proto.SparkFunWeatherShieldTimeSeriesData
+	(*timestamppb.Timestamp)(nil),               // 4: google.protobuf.Timestamp
 }
 var file_proto_serialreader_proto_depIdxs = []int32{
-	0, // 0: proto.SerialReaderService.SayHello:input_type -> proto.SayHelloRequest
-	1, // 1: proto.SerialReaderService.SayHello:output_type -> proto.SayHelloResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	4, // 0: proto.SparkFunWeatherShieldTimeSeriesData.timestamp:type_name -> google.protobuf.Timestamp
+	0, // 1: proto.SerialReaderService.SayHello:input_type -> proto.SayHelloRequest
+	2, // 2: proto.SerialReaderService.GetSparkFunWeatherShieldData:input_type -> proto.GetTimeSeriesData
+	1, // 3: proto.SerialReaderService.SayHello:output_type -> proto.SayHelloResponse
+	3, // 4: proto.SerialReaderService.GetSparkFunWeatherShieldData:output_type -> proto.SparkFunWeatherShieldTimeSeriesData
+	3, // [3:5] is the sub-list for method output_type
+	1, // [1:3] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_proto_serialreader_proto_init() }
@@ -161,7 +388,7 @@ func file_proto_serialreader_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_serialreader_proto_rawDesc), len(file_proto_serialreader_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
